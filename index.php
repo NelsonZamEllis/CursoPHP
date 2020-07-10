@@ -1,32 +1,10 @@
 <?php
+
+include('jobs.php');
+
 $name = 'Nelson Zambrano';
-$jobs = [
-  [
-    'title' => 'PHP Developer',
-    'description' => 'This is an awesome job!!!',
-    'visible' => true
-  ],
-  [
-    'title' => 'Python Dev',
-    'description' => 'This is an awesome job!!!',
-    'visible' => false
-  ],
-  [
-    'title' => 'Devops',
-    'description' => 'This is an awesome job!!!',
-    'visible' => false
-  ],
-  [
-    'title' => 'Node Dev',
-    'description' => 'This is an awesome job!!!',
-    'visible' => true
-  ]
-  [
-    'title' => 'Frontend Dev',
-    'description' => 'This is an awesome job!!!',
-    'visible' => true
-  ]
-];
+$limitMonths = 2000;
+
 ?>
 
 <!doctype html>
@@ -77,19 +55,16 @@ $jobs = [
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
             <?php
-            for ($idx = 0; $idx < 3; $idx++){
-              if($jobs[$idx]['visible'] == true){
-                echo '<li class="work-position">';
-                echo '<h5>' . $jobs[$idx]['title'] . '</h5>';
-                echo '<p>' . $jobs[$idx]['description'] . '</p>';
-                echo '<strong>Achievements:</strong>';
-                echo '<ul>';
-                echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-                echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-                echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-                echo '</ul>';
-                echo '</li>';
+            $totalMonths = 0;
+            for ($idx = 0; $idx < count($jobs); $idx++){
+              //$totalMonths = $totalMonths + $jobs[$idx]['months'];
+              //$totalMonths += $jobs[$idx]['months'];
+              $totalMonths += $jobs[$idx]->months;
+
+              if ($totalMonths > $limitMonths) {
+                break;
               }
+              printJob($jobs[$idx]);
             }
             ?>
           </ul>
