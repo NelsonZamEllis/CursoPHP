@@ -1,6 +1,7 @@
 <?php
 
-include('jobs.php');
+use App\Models\Job;
+require_once('jobs.php');
 
 $name = 'Nelson Zambrano';
 $limitMonths = 2000;

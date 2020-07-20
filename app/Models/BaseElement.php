@@ -1,25 +1,24 @@
 <?php
-
 namespace App\Models;
 
 require_once 'Printable.php';
 
-class BaseElement  implements Printable {
+class BaseElement implements Printable {
     protected $title;
     public $description;
     public $visible = true;
     public $months;
 
-    public function __construct($title, $description){
-      $this->setTitle($title);
-      $this->description = $description;
+    public function __construct($title, $description) {
+        $this->setTitle($title);
+        $this->description = $description;
     }
 
-    public function setTitle($t){
+    public function setTitle($t) {
         if($t == '') {
-          $this->title = 'N/A';
+            $this->title = 'N/A';
         } else {
-        $this->title = $t;
+            $this->title = $t;
         }
     }
 
@@ -27,21 +26,14 @@ class BaseElement  implements Printable {
         return $this->title;
     }
 
-        public function getDurationAsString()
-        {
+    public function getDurationAsString() {
         $years = floor($this->months / 12);
         $extraMonths = $this->months % 12;
-        $message = "";
-        if ($years > 0) {
-            $message .= "$years years ";
-        } 
-        if ($extraMonths > 0) {
-            $message .= "$extraMonths months";
-        }
-        return $message;
-        }
+      
+        return "$years years $extraMonths months";
+    }
 
-        public function getDescription(){
-          return $this->description;
-      }
-      } 
+    public function getDescription() {
+        return $this->description;
+    }
+}
